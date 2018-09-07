@@ -14,7 +14,7 @@ class EssenceActivityRepository extends \Doctrine\ORM\EntityRepository
 
     public function getStatsBetweenDates($dateStart, $dateEnd) {
         $results = $this->createQueryBuilder('a')
-            ->where(':dateStart < a.date < :dateEnd')
+            ->where('a.date BETWEEN :dateStart AND :dateEnd')
             ->setParameter('dateStart', $dateStart)
             ->setParameter('dateEnd', $dateEnd)
             ->getQuery()->getResult();
